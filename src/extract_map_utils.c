@@ -21,7 +21,7 @@ void	get_map_height(t_data *data, int start_index)
 	i = start_index;
 	j = start_index;
 	map_height = 0;
-	while (data->file_data[i])
+	while (data->filt_edata[i])
 		i++;
 	map_height = i - j;
 	data->map_height = map_height;
@@ -33,16 +33,16 @@ void	get_map_width(t_data *data, int start_index)
 	int	j;
 	int	max_width;
 	int	cur_width;
-    int mwi;
+	int	mwi;
 
 	i = start_index;
 	j = start_index;
 	max_width = 0;
 	cur_width = 0;
 	mwi = 0;
-	while (data->file_data[i])
+	while (data->filt_edata[i])
 	{
-		cur_width = ft_strlen(data->file_data[i]);
+		cur_width = ft_strlen(data->filt_edata[i]);
 		if (cur_width > max_width)
 		{
 			max_width = cur_width;

@@ -38,7 +38,7 @@ typedef struct s_player_position
 
 typedef struct s_data
 {
-	char				**file_data;
+	char				**filt_edata;
 	char				*file_str;
 	int					line_count;
 	char				*no_texture;
@@ -57,7 +57,7 @@ typedef struct s_data
 
 void					get_number_of_lines(char *path, t_data *data);
 void					check_file_validity(t_data *data, char *file_str);
-void					get_file_data(t_data *data);
+void					get_filt_edata(t_data *data);
 void					extract_textures(t_data *data);
 void					extract_floor_and_ceiling(t_data *data);
 void					do_premap_elements_exist(t_data *data);
@@ -66,7 +66,7 @@ void					map_validation(t_data *data);
 void					create_map_copy(t_data *data);
 void					invoke_flood(t_data *data);
 void					init_reset_data(t_data *data);
-void					free_data(t_data *data);
+void					fret_edata(t_data *data);
 void					ft_exit_failure(t_data *data, char *msg);
 void					validate_textures(t_data *data);
 void					check_is_directory(t_data *data, char *texture);
@@ -92,7 +92,7 @@ typedef struct s_paths
 	char				*west;
 }						t_paths;
 
-typedef struct execution_data
+typedef struct s_executiondata
 {
 	void				*mlx;
 	void				*win;
@@ -116,7 +116,7 @@ typedef struct execution_data
 	int					tex_height[4];
 	t_data				*pdata;
 	int					**int_map;
-}						e_data;
+}						t_edata;
 
 typedef struct s_ray
 {
@@ -146,23 +146,25 @@ typedef struct s_ray
 }						t_ray;
 
 void					*ft_memset(void *b, int c, size_t len);
-int						handle_key(int key, e_data *d);
-void					cleanup_and_exit(e_data *data);
+int						handle_key(int key, t_edata *d);
+void					cleanup_and_exit(t_edata *data);
 void					print_map(char **map, int height);
-void					init_data(e_data *data, t_data *pdata);
-void					draw_scene_3d(e_data *d, t_data *p);
-void					init_ray(t_ray *r, e_data *d, int x);
-void					init_step(t_ray *r, e_data *d);
+void					init_data(t_edata *data, t_data *pdata);
+void					draw_scene_3d(t_edata *d, t_data *p);
+void					init_ray(t_ray *r, t_edata *d, int x);
+void					init_step(t_ray *r, t_edata *d);
 void					perform_dda(t_ray *r, t_data *p);
 void					calc_wall(t_ray *r);
-void					calc_texture(t_ray *r, e_data *d);
-void					draw_column(e_data *d, t_ray *r, int x);
+void					calc_texture(t_ray *r, t_edata *d);
+void					draw_column(t_edata *d, t_ray *r, int x);
 int						get_texture_index(t_ray *r);
-void					my_pixel_put(e_data *data, int x, int y, int color);
-int						handle_close(e_data *data);
-void					cleanup_and_exit(e_data *data);
-void					my_pixel_put(e_data *data, int x, int y, int color);
-void					init_dirplane(e_data *d, t_data *pdata);
-void          is_valid_map_char(t_data *data);
+void					my_pixel_put(t_edata *data, int x, int y, int color);
+int						handle_close(t_edata *data);
+void					cleanup_and_exit(t_edata *data);
+void					my_pixel_put(t_edata *data, int x, int y, int color);
+void					init_dirplane(t_edata *d, t_data *pdata);
+void					is_valid_map_char(t_data *data);
+int						render(t_edata *data);
+void					init_textures(t_edata *data, t_data *pdata);
 
 #endif

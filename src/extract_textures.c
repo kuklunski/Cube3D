@@ -6,7 +6,7 @@
 /*   By: ylemkere <ylemkere@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/16 23:33:17 by ylemkere          #+#    #+#             */
-/*   Updated: 2026/01/16 23:33:17 by ylemkere         ###   ########.fr       */
+/*   Updated: 2026/01/17 21:04:21 by ylemkere         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,11 +15,11 @@
 void	get_no_texture(t_data *data, char *line)
 {
 	char	*text;
-  char  *index;
+	char	*index;
 
 	text = NULL;
-	index = NULL;
-	if ((index = ft_strnstr(line, "NO ", ft_strlen(line))))
+	index = ft_strnstr(line, "NO ", ft_strlen(line));
+	if (index)
 	{
 		if (data->no_texture)
 			ft_exit_failure(data, "{-} duplicated texture!");
@@ -33,11 +33,11 @@ void	get_no_texture(t_data *data, char *line)
 void	get_so_texture(t_data *data, char *line)
 {
 	char	*text;
-  char  *index;
+	char	*index;
 
 	text = NULL;
-	index = NULL;
-	if ((index = ft_strnstr(line, "SO ", ft_strlen(line))))
+	index = ft_strnstr(line, "SO ", ft_strlen(line));
+	if (index)
 	{
 		if (data->so_texture)
 			ft_exit_failure(data, "{-} duplicated texture!");
@@ -51,11 +51,11 @@ void	get_so_texture(t_data *data, char *line)
 void	get_ea_texture(t_data *data, char *line)
 {
 	char	*text;
-  char  *index;
+	char	*index;
 
 	text = NULL;
-	index = NULL;
-	if ((index = ft_strnstr(line, "EA ", ft_strlen(line))))
+	index = ft_strnstr(line, "EA ", ft_strlen(line));
+	if (index)
 	{
 		if (data->ea_texture)
 			ft_exit_failure(data, "{-} duplicated texture!");
@@ -69,11 +69,11 @@ void	get_ea_texture(t_data *data, char *line)
 void	get_we_texture(t_data *data, char *line)
 {
 	char	*text;
-  char  *index;
+	char	*index;
 
 	text = NULL;
-  index = NULL;
-	if ((index = ft_strnstr(line, "WE ", ft_strlen(line))))
+	index = ft_strnstr(line, "WE ", ft_strlen(line));
+	if (index)
 	{
 		if (data->we_texture)
 			ft_exit_failure(data, "{-} duplicated texture!");
@@ -89,12 +89,12 @@ void	extract_textures(t_data *data)
 	int	i;
 
 	i = 0;
-	while (data->file_data[i])
+	while (data->filt_edata[i])
 	{
-		get_no_texture(data, data->file_data[i]);
-		get_so_texture(data, data->file_data[i]);
-		get_ea_texture(data, data->file_data[i]);
-		get_we_texture(data, data->file_data[i]);
+		get_no_texture(data, data->filt_edata[i]);
+		get_so_texture(data, data->filt_edata[i]);
+		get_ea_texture(data, data->filt_edata[i]);
+		get_we_texture(data, data->filt_edata[i]);
 		i++;
 	}
 }

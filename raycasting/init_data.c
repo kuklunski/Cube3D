@@ -17,7 +17,7 @@ static int	rgb_to_hex(int rgb[3])
 	return (((rgb[0] & 0xFF) << 16) | ((rgb[1] & 0xFF) << 8) | (rgb[2] & 0xFF));
 }
 
-static void	init_textures(e_data *data)
+static void	null_textures(t_edata *data)
 {
 	int	i;
 
@@ -32,7 +32,7 @@ static void	init_textures(e_data *data)
 	}
 }
 
-void	init_data(e_data *data, t_data *pdata)
+void	init_data(t_edata *data, t_data *pdata)
 {
 	data->mlx = mlx_init();
 	data->win = mlx_new_window(data->mlx, WIDTH, HEIGHT, "Cub3D");
@@ -44,6 +44,6 @@ void	init_data(e_data *data, t_data *pdata)
 	data->img = mlx_new_image(data->mlx, WIDTH, HEIGHT);
 	data->addr = mlx_get_data_addr(data->img, &data->bits_per_pixel,
 			&data->line_length, &data->endian);
-	init_textures(data);
+	null_textures(data);
 	data->pdata = pdata;
 }

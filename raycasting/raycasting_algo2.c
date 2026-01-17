@@ -12,7 +12,7 @@
 
 #include "../cub3d.h"
 
-void	init_ray(t_ray *r, e_data *d, int x)
+void	init_ray(t_ray *r, t_edata *d, int x)
 {
 	r->camerax = 2 * x / (double)WIDTH - 1;
 	r->raydirx = d->dirx + d->planex * r->camerax;
@@ -23,7 +23,7 @@ void	init_ray(t_ray *r, e_data *d, int x)
 	r->deltadisty = fabs(1 / r->raydiry);
 }
 
-void	init_step(t_ray *r, e_data *d)
+void	init_step(t_ray *r, t_edata *d)
 {
 	if (r->raydirx < 0)
 	{

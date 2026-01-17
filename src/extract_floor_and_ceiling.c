@@ -6,7 +6,7 @@
 /*   By: ylemkere <ylemkere@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/16 23:37:32 by ylemkere          #+#    #+#             */
-/*   Updated: 2026/01/16 23:37:32 by ylemkere         ###   ########.fr       */
+/*   Updated: 2026/01/17 21:08:21 by ylemkere         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,11 +58,11 @@ void	get_ceiling(t_data *data, char *line)
 {
 	int		i;
 	char	**matrix;
-  char  *index;
+	char	*index;
 
 	i = 0;
-  index = NULL;
-	if ((index = ft_strnstr(line, "C ", ft_strlen(line))))
+	index = ft_strnstr(line, "C ", ft_strlen(line));
+	if (index)
 	{
 		if (data->ceiling[0] != -1)
 			ft_exit_failure(data, "{-} Ceiling is duplicated!");
@@ -82,11 +82,11 @@ void	get_floor(t_data *data, char *line)
 {
 	int		i;
 	char	**matrix;
-  char  *index;
+	char	*index;
 
 	i = 0;
-  index = NULL;
-	if ((index = ft_strnstr(line, "F ", ft_strlen(line))))
+	index = ft_strnstr(line, "F ", ft_strlen(line));
+	if (index)
 	{
 		if (data->floor[0] != -1)
 			ft_exit_failure(data, "{-} Floor is duplicated!");
@@ -107,10 +107,10 @@ void	extract_floor_and_ceiling(t_data *data)
 	int	i;
 
 	i = 0;
-	while (data->file_data[i])
+	while (data->filt_edata[i])
 	{
-		get_floor(data, data->file_data[i]);
-		get_ceiling(data, data->file_data[i]);
+		get_floor(data, data->filt_edata[i]);
+		get_ceiling(data, data->filt_edata[i]);
 		i++;
 	}
 }

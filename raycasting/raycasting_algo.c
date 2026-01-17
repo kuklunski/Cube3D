@@ -45,7 +45,7 @@ int	get_texture_index(t_ray *r)
 	}
 }
 
-void	calc_texture(t_ray *r, e_data *d)
+void	calc_texture(t_ray *r, t_edata *d)
 {
 	if (r->side == 0)
 		r->wallx = d->posy + r->perpwalldist * r->raydiry;
@@ -57,7 +57,7 @@ void	calc_texture(t_ray *r, e_data *d)
 		r->tex_x = d->tex_width[r->tex] - r->tex_x - 1;
 }
 
-void	draw_column(e_data *d, t_ray *r, int x)
+void	draw_column(t_edata *d, t_ray *r, int x)
 {
 	int	y;
 
@@ -81,7 +81,7 @@ void	draw_column(e_data *d, t_ray *r, int x)
 	}
 }
 
-void	draw_scene_3d(e_data *d, t_data *p)
+void	draw_scene_3d(t_edata *d, t_data *p)
 {
 	t_ray	r;
 	int		x;

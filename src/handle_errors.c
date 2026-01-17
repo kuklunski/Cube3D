@@ -15,6 +15,6 @@
 void	ft_exit_failure(t_data *data, char *msg)
 {
 	printf("%s\n", msg);
-	free_data(data);
+	fret_edata(data);
 	exit(1);
 }

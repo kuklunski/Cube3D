@@ -12,7 +12,7 @@
 
 #include "../cub3d.h"
 
-static void	move_fb(int key, e_data *d)
+static void	move_fb(int key, t_edata *d)
 {
 	double	s;
 	double	radius;
@@ -42,7 +42,7 @@ static void	move_fb(int key, e_data *d)
 }
 
 // new_position = position + direction * distance
-static void	move_strafe(int key, e_data *d)
+static void	move_strafe(int key, t_edata *d)
 {
 	double	s;
 	char	**map;
@@ -66,7 +66,7 @@ static void	move_strafe(int key, e_data *d)
 }
 
 // rotqtion matrix
-static void	rotate(int key, e_data *d)
+static void	rotate(int key, t_edata *d)
 {
 	double	rs;
 	double	old_dx;
@@ -93,7 +93,7 @@ static void	rotate(int key, e_data *d)
 // D          = 'd'
 // Left Arrow = 65361
 // Right Arrow= 65363
-int	handle_key(int key, e_data *d)
+int	handle_key(int key, t_edata *d)
 {
 	if (key == 65307)
 		cleanup_and_exit(d);

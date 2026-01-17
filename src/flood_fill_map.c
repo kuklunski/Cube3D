@@ -6,7 +6,7 @@
 /*   By: ylemkere <ylemkere@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/16 23:31:35 by ylemkere          #+#    #+#             */
-/*   Updated: 2026/01/16 23:31:35 by ylemkere         ###   ########.fr       */
+/*   Updated: 2026/01/17 21:05:30 by ylemkere         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,53 +30,56 @@ void	create_map_copy(t_data *data)
 	}
 }
 // TODO: check if spaces are inside the map either newline or ' '
-// this is not a problem because it's out of bonds for the player so we can argue that i treated it like a space
+// this is not a problem because it's out of bonds for the
+// player so we can argue that i treated it like a space
 // i only treated it as invalid if it's in the bounds of the player himself
-
-// found the fix i just need to make sure that 0 is not at the start of anything or at the end of anything!
+// found the fix i just need to make sure that 0 is
+// not at the start of anything or at the end of anything!
 // TODO:
 //
 // i think this is it
 // at the endge of each wall, there should be no leaks
 // as in no 0 at the end
 
-int leak_found(t_data *data, int pos_y, int pos_x)
+int	leak_found(t_data *data, int pos_y, int pos_x)
 {
-  //int map_width = data->map_width;
-  // pos_x and map height comp is illogical because x is for width 
-  char *line = data->map_copy[pos_y];
-  if ((pos_x == ft_strlen(line) - 1) && data->map_copy[pos_y][pos_x] != '1')
-  {
-    ft_exit_failure(data, "{-} Error, leak found on the map's edge! 1");
-    return 0;
-  }
-  if (pos_x == 0 && data->map_copy[pos_y][pos_x] != '1')
-  {
-    ft_exit_failure(data, "{-} Error, leak found on the map's edge! 2");
-    return 0;
-  }
-  if ((pos_y == data->map_height - 1) && data->map_copy[pos_y][pos_x] != '1')
-  {
-    // this handles the bottom wall
-    ft_exit_failure(data, "{-} Error, leak found on the map's edge! 3");
-    return 0;
-  }
-  if (pos_y == 0 && data->map_copy[pos_y][pos_x] != '1')
-  {
-    // this handles the top wall
-    ft_exit_failure(data, "{-} Error, leak found on the map's edge! 4");
-    return 0;
-  }
-  return 0;
+	char	*line;
+
+	line = data->map_copy[pos_y];
+	if ((pos_x == ft_strlen(line) - 1) && data->map_copy[pos_y][pos_x] != '1')
+	{
+		ft_exit_failure(data, "{-} Error, leak found on the map's edge! 1");
+		return (0);
+	}
+	if (pos_x == 0 && data->map_copy[pos_y][pos_x] != '1')
+	{
+		ft_exit_failure(data, "{-} Error, leak found on the map's edge! 2");
+		return (0);
+	}
+	if ((pos_y == data->map_height - 1) && data->map_copy[pos_y][pos_x] != '1')
+	{
+		ft_exit_failure(data, "{-} Error, leak found on the map's edge! 3");
+		return (0);
+	}
+	if (pos_y == 0 && data->map_copy[pos_y][pos_x] != '1')
+	{
+		ft_exit_failure(data, "{-} Error, leak found on the map's edge! 4");
+		return (0);
+	}
+	return (0);
 }
 
 void	flood_fill(t_data *data, int pos_x, int pos_y, char player_char)
 {
-	if ((pos_x < 0 || pos_y < 0) || (pos_x >= data->map_width - 1) || (pos_y >= data->map_height))
+	if ((pos_x < 0 || pos_y < 0) || (pos_x >= data->map_width - 1)
+		|| (pos_y >= data->map_height))
 		return ;
-	if (data->map_copy[pos_y][pos_x] == '1' || data->map_copy[pos_y][pos_x] == 'X')
+	if (data->map_copy[pos_y][pos_x] == '1'
+		|| data->map_copy[pos_y][pos_x] == 'X')
 		return ;
-	if (data->map_copy[pos_y][pos_x] == ' ' || data->map_copy[pos_y][pos_x] == '\0' || leak_found(data, pos_y, pos_x))
+	if (data->map_copy[pos_y][pos_x] == ' '
+		|| data->map_copy[pos_y][pos_x] == '\0' || leak_found(data, pos_y,
+			pos_x))
 		ft_exit_failure(data, "{-} Error , leak found on the maps edge! 5");
 	data->map_copy[pos_y][pos_x] = 'X';
 	flood_fill(data, pos_x + 1, pos_y, player_char);

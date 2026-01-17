@@ -14,23 +14,25 @@
 
 int	is_config_line(char *line)
 {
-	if (ft_strnstr(line, "NO ", ft_strlen(line)) || ft_strnstr(line, "EA ", ft_strlen(line))
-		|| ft_strnstr(line, "SO ", ft_strlen(line)) || ft_strnstr(line, "WE ", ft_strlen(line)))
+	if (ft_strnstr(line, "NO ", ft_strlen(line)) || ft_strnstr(line, "EA ",
+			ft_strlen(line)) || ft_strnstr(line, "SO ", ft_strlen(line))
+		|| ft_strnstr(line, "WE ", ft_strlen(line)))
 	{
 		return (1);
 	}
-	if (ft_strnstr(line, "F ", ft_strlen(line)) || ft_strnstr(line, "C ", ft_strlen(line)))
+	if (ft_strnstr(line, "F ", ft_strlen(line)) || ft_strnstr(line, "C ",
+			ft_strlen(line)))
 	{
 		return (1);
 	}
 	return (0);
 }
 
-int not_map_line(char *line)
+int	not_map_line(char *line)
 {
-  if (is_config_line(line) || ft_strlen(line) < 3 || line[0] == '\n')
-    return (1);
-  return (0);
+	if (is_config_line(line) || ft_strlen(line) < 3 || line[0] == '\n')
+		return (1);
+	return (0);
 }
 
 int	return_map_index(t_data *data)
@@ -38,8 +40,8 @@ int	return_map_index(t_data *data)
 	int	i;
 
 	i = 0;
-	while (data->file_data[i] && not_map_line(data->file_data[i]))
-    i++;
+	while (data->filt_edata[i] && not_map_line(data->filt_edata[i]))
+		i++;
 	return (i);
 }
 
@@ -77,9 +79,9 @@ void	extract_map(t_data *data)
 		ft_exit_failure(data, "map allocation failed!");
 	data->map[data->map_height] = NULL;
 	j = 0;
-	while (data->file_data[i])
+	while (data->filt_edata[i])
 	{
-		data->map[j] = ft_strdup(data->file_data[i]);
+		data->map[j] = ft_strdup(data->filt_edata[i]);
 		if (!data->map[j])
 			ft_exit_failure(data, "map allocation failed!");
 		i++;

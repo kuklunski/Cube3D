@@ -12,7 +12,7 @@
 
 #include "../cub3d.h"
 
-void	my_pixel_put(e_data *data, int x, int y, int color)
+void	my_pixel_put(t_edata *data, int x, int y, int color)
 {
 	char	*dst;
 
@@ -22,7 +22,7 @@ void	my_pixel_put(e_data *data, int x, int y, int color)
 	*(unsigned int *)dst = color;
 }
 
-void	cleanup_and_exit(e_data *data)
+void	cleanup_and_exit(t_edata *data)
 {
 	int	i;
 
@@ -45,13 +45,12 @@ void	cleanup_and_exit(e_data *data)
 		free(data->mlx);
 	}
 	if (data->pdata)
-		free_data(data->pdata);
+		fret_edata(data->pdata);
 	exit(0);
 }
 
-int	handle_close(e_data *data)
+int	handle_close(t_edata *data)
 {
 	cleanup_and_exit(data);
 	return (0);
 }
-

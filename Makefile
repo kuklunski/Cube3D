@@ -12,6 +12,7 @@ SRC = main.c \
 	  raycasting/raycasting_algo.c \
 	  raycasting/raycasting_algo2.c \
 	  raycasting/utils.c \
+	  raycasting/init_textures.c \
 	  src/check_xpm_extension.c \
 	  src/extract_map_utils.c \
 	  src/floor_ceiling_range_check.c \

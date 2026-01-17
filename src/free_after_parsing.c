@@ -26,10 +26,10 @@ void	free_double_char_pointer(char **matrix)
 	free(matrix);
 }
 
-void	free_data(t_data *data)
+void	fret_edata(t_data *data)
 {
-	if (data->file_data)
-		free_double_char_pointer(data->file_data);
+	if (data->filt_edata)
+		free_double_char_pointer(data->filt_edata);
 	if (data->map)
 		free_double_char_pointer(data->map);
 	if (data->map_copy)

@@ -12,7 +12,7 @@
 
 #include "../cub3d.h"
 
-static void	set_north(e_data *d)
+static void	set_north(t_edata *d)
 {
 	d->dirx = 0;
 	d->diry = -1;
@@ -20,7 +20,7 @@ static void	set_north(e_data *d)
 	d->planey = 0;
 }
 
-static void	set_south(e_data *d)
+static void	set_south(t_edata *d)
 {
 	d->dirx = 0;
 	d->diry = 1;
@@ -28,7 +28,7 @@ static void	set_south(e_data *d)
 	d->planey = 0;
 }
 
-static void	set_east(e_data *d)
+static void	set_east(t_edata *d)
 {
 	d->dirx = 1;
 	d->diry = 0;
@@ -36,7 +36,7 @@ static void	set_east(e_data *d)
 	d->planey = -0.66;
 }
 
-static void	set_west(e_data *d)
+static void	set_west(t_edata *d)
 {
 	d->dirx = -1;
 	d->diry = 0;
@@ -44,7 +44,7 @@ static void	set_west(e_data *d)
 	d->planey = 0.66;
 }
 
-void	init_dirplane(e_data *d, t_data *pdata)
+void	init_dirplane(t_edata *d, t_data *pdata)
 {
 	if (pdata->player_char == 'N')
 		set_north(d);
